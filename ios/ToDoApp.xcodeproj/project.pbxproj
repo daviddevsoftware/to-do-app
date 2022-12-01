@@ -42,6 +42,22 @@
 		72379AE946F9AC9F18698D1F /* libPods-ToDoApp-ToDoAppTests.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-ToDoApp-ToDoAppTests.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		73A4191FFF208660D19D46E2 /* Pods-ToDoApp.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToDoApp.release.xcconfig"; path = "Target Support Files/Pods-ToDoApp/Pods-ToDoApp.release.xcconfig"; sourceTree = "<group>"; };
 		81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = LaunchScreen.storyboard; path = ToDoApp/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		E14B13932938ED0500A85194 /* Fontisto.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Fontisto.ttf; sourceTree = "<group>"; };
+		E14B13942938ED0500A85194 /* Octicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Octicons.ttf; sourceTree = "<group>"; };
+		E14B13952938ED0500A85194 /* Feather.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Feather.ttf; sourceTree = "<group>"; };
+		E14B13962938ED0500A85194 /* Entypo.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Entypo.ttf; sourceTree = "<group>"; };
+		E14B13972938ED0500A85194 /* FontAwesome5_Brands.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome5_Brands.ttf; sourceTree = "<group>"; };
+		E14B13982938ED0500A85194 /* MaterialCommunityIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialCommunityIcons.ttf; sourceTree = "<group>"; };
+		E14B13992938ED0500A85194 /* AntDesign.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = AntDesign.ttf; sourceTree = "<group>"; };
+		E14B139A2938ED0500A85194 /* Foundation.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Foundation.ttf; sourceTree = "<group>"; };
+		E14B139B2938ED0500A85194 /* Ionicons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ionicons.ttf; sourceTree = "<group>"; };
+		E14B139C2938ED0500A85194 /* FontAwesome5_Solid.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome5_Solid.ttf; sourceTree = "<group>"; };
+		E14B139D2938ED0500A85194 /* FontAwesome5_Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome5_Regular.ttf; sourceTree = "<group>"; };
+		E14B139E2938ED0500A85194 /* FontAwesome.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = FontAwesome.ttf; sourceTree = "<group>"; };
+		E14B139F2938ED0500A85194 /* Zocial.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Zocial.ttf; sourceTree = "<group>"; };
+		E14B13A02938ED0500A85194 /* EvilIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = EvilIcons.ttf; sourceTree = "<group>"; };
+		E14B13A12938ED0500A85194 /* SimpleLineIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = SimpleLineIcons.ttf; sourceTree = "<group>"; };
+		E14B13A22938ED0500A85194 /* MaterialIcons.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = MaterialIcons.ttf; sourceTree = "<group>"; };
 		ED297162215061F000B7C4FE /* JavaScriptCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = JavaScriptCore.framework; path = System/Library/Frameworks/JavaScriptCore.framework; sourceTree = SDKROOT; };
 		F45262880C6B11A76EAE168A /* Pods-ToDoApp.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ToDoApp.debug.xcconfig"; path = "Target Support Files/Pods-ToDoApp/Pods-ToDoApp.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -89,6 +105,7 @@
 				13B07FAF1A68108700A75B9A /* AppDelegate.h */,
 				13B07FB01A68108700A75B9A /* AppDelegate.mm */,
 				13B07FB51A68108700A75B9A /* Images.xcassets */,
+				E14B13922938ED0500A85194 /* Fonts */,
 				13B07FB61A68108700A75B9A /* Info.plist */,
 				81AB9BB72411601600AC10FF /* LaunchScreen.storyboard */,
 				13B07FB71A68108700A75B9A /* main.m */,
@@ -146,6 +163,30 @@
 				5E8E4DC67B5C4DAEFDB875A0 /* Pods-ToDoApp-ToDoAppTests.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		E14B13922938ED0500A85194 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				E14B13932938ED0500A85194 /* Fontisto.ttf */,
+				E14B13942938ED0500A85194 /* Octicons.ttf */,
+				E14B13952938ED0500A85194 /* Feather.ttf */,
+				E14B13962938ED0500A85194 /* Entypo.ttf */,
+				E14B13972938ED0500A85194 /* FontAwesome5_Brands.ttf */,
+				E14B13982938ED0500A85194 /* MaterialCommunityIcons.ttf */,
+				E14B13992938ED0500A85194 /* AntDesign.ttf */,
+				E14B139A2938ED0500A85194 /* Foundation.ttf */,
+				E14B139B2938ED0500A85194 /* Ionicons.ttf */,
+				E14B139C2938ED0500A85194 /* FontAwesome5_Solid.ttf */,
+				E14B139D2938ED0500A85194 /* FontAwesome5_Regular.ttf */,
+				E14B139E2938ED0500A85194 /* FontAwesome.ttf */,
+				E14B139F2938ED0500A85194 /* Zocial.ttf */,
+				E14B13A02938ED0500A85194 /* EvilIcons.ttf */,
+				E14B13A12938ED0500A85194 /* SimpleLineIcons.ttf */,
+				E14B13A22938ED0500A85194 /* MaterialIcons.ttf */,
+			);
+			name = Fonts;
+			path = "../node_modules/react-native-vector-icons/Fonts";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
