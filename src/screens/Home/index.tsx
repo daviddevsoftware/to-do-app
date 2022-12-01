@@ -1,16 +1,81 @@
 // Native Libraries
-import React, { useContext } from 'react';
-import { Dimensions, Text, TouchableNativeFeedback } from 'react-native';
+import React, { useEffect } from 'react';
+import { SectionList, Text, TouchableNativeFeedback } from 'react-native';
 import { StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 // Global Styles
-import { colors, generalStyles } from '../../utilities/styles';
+import { generalStyles } from '../../utilities/styles';
 
 // Icons
 import Icon from 'react-native-vector-icons/FontAwesome';
 
-const HomeScreen = (props: any) => {
+// Navigation
+import { CommonActions } from '@react-navigation/native';
+
+// Store
+import { useDispatch } from 'react-redux';
+import { addTask, clearTask, TaskData } from '../../store/tasks';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../store/index';
+
+// Components
+import TaskItem from './components/TaskItem';
+
+// Interfaces
+interface SectionTasks {
+    title: string;
+    data: TaskData[];
+}
+
+const HomeScreen = ({ navigation }: any) => {
+
+    // Task Data
+    const { tasks, completedTasks } = useSelector((state: RootState) => state.TaskData);
+    const data: SectionTasks[] = [
+        {
+            title: 'Completed tasks',
+            data: completedTasks,
+        },
+        {
+            title: 'Pending tasks',
+            data: tasks,
+        },
+    ];
+
+    // const isDarkMode = useColorScheme() === 'dark';
+    const dispatch = useDispatch();
+        
+    useEffect(() => {
+        
+        // dispatch(clearTask({}))
+
+        // addLocalTast('Design team meeting');
+        // addLocalTast('Making Wireframes');
+        // addLocalTast('Create UI Elements');
+        // addLocalTast('Meeting with Murman Khvadadze');
+ 
+    }, [])
+
+    const addLocalTast = (title: string) => {
+        dispatch(addTask({
+            title: title,
+            dead_line: new Date(),
+            start_time: '10:00',
+            end_time: '11:00',
+            remind: '10 minutes',
+            repeat: 'weekly',
+            completed: false,
+        }));
+    }
+
+   const goToNewTask = () => {
+        const navigateAction = CommonActions.navigate({
+            name: 'AddTask',
+            params: {}
+        });
+        navigation.dispatch(navigateAction);
+    }
 
     return (
         <View style={[generalStyles.screen]}>
@@ -53,6 +118,25 @@ const HomeScreen = (props: any) => {
 
                     {/* Content */}
                     <View style={[ styles.content ]}>
+                        
+                        <SectionList
+                            sections={[
+                                {
+                                    title: 'Completed tasks',
+                                    data: completedTasks,
+                                },
+                                {
+                                    title: 'Pending tasks',
+                                    data: tasks,
+                                },
+                            ]}
+                            stickyHeaderHiddenOnScroll={false}
+                            keyExtractor={(item, index) => `${item.id}-${index}`}
+                            renderItem={({ item, index }) => <TaskItem item={item} index={index}/>}
+                            renderSectionHeader={({ section: { title } }) => (
+                                <Text style={[styles.title, { marginBottom: 10 }]}>{title}</Text>
+                            )}
+                        />
 
                     </View>
                 </View>
@@ -77,6 +161,8 @@ const styles = StyleSheet.create({
     },
     content: {
         flex: 6,
+        paddingHorizontal: 30,
+        paddingVertical: 30
     },
     actionsContainer: { 
         flex: 1, 
@@ -85,7 +171,6 @@ const styles = StyleSheet.create({
         justifyContent: 'space-around',
         paddingRight: 10,
     },
-
     // Title
     titleContainer: {
         flex: 1,
@@ -97,13 +182,15 @@ const styles = StyleSheet.create({
         fontSize: 25,
         fontWeight: '300'
     },
-
     containerIcon: {
         height: 40,
         width: 40,
         alignItems: 'center',
         justifyContent: 'center',
-    }
+    },
+    scrollView: {
+        paddingHorizontal: 30,
+    },
 });
 
 export default HomeScreen;
