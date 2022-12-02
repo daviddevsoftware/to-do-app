@@ -34,10 +34,9 @@ const TaskItem = ({ item, index }: ComponentProps) => {
             Animated.timing(opacity, {
                 toValue: 1,
                 duration : 600,
-                delay: 100,
-                useNativeDriver: false,
+                useNativeDriver: true,
             }).start();
-        }, 50)
+        }, 100)
     }, [])
 
     const handleSetToggle = () => {
@@ -60,7 +59,7 @@ const TaskItem = ({ item, index }: ComponentProps) => {
     }
 
     return (
-        <Animated.View key={`${item.id}-${index}`} style={[styles.container, {opacity: opacity}]}>
+        <Animated.View key={`${item.id}-${index}`} style={[styles.container, { opacity: Platform.OS === 'ios' ? opacity : 1 }]}>
             <CheckBox
                 value={toggleCheckBox}
                 onValueChange={(newValue) => {

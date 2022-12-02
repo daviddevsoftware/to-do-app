@@ -5,7 +5,7 @@ import { StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 // Global Styles
-import { generalStyles } from '../../utilities/styles';
+import { colors, generalStyles } from '../../utilities/styles';
 
 // Icons
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -21,6 +21,7 @@ import { RootState } from '../../store/index';
 
 // Components
 import TaskItem from './components/TaskItem';
+import Button from '../../components/Button';
 
 // Interfaces
 interface SectionTasks {
@@ -43,11 +44,10 @@ const HomeScreen = ({ navigation }: any) => {
         },
     ];
 
-    // const isDarkMode = useColorScheme() === 'dark';
     const dispatch = useDispatch();
         
     useEffect(() => {
-        
+
         // dispatch(clearTask({}))
 
         // addLocalTast('Design team meeting');
@@ -119,24 +119,18 @@ const HomeScreen = ({ navigation }: any) => {
                     {/* Content */}
                     <View style={[ styles.content ]}>
                         
+                        {/* Sections of tasks */}
                         <SectionList
-                            sections={[
-                                {
-                                    title: 'Completed tasks',
-                                    data: completedTasks,
-                                },
-                                {
-                                    title: 'Pending tasks',
-                                    data: tasks,
-                                },
-                            ]}
-                            stickyHeaderHiddenOnScroll={false}
+                            sections={data}
+                            stickySectionHeadersEnabled={false}
                             keyExtractor={(item, index) => `${item.id}-${index}`}
                             renderItem={({ item, index }) => <TaskItem item={item} index={index}/>}
                             renderSectionHeader={({ section: { title } }) => (
-                                <Text style={[styles.title, { marginBottom: 10 }]}>{title}</Text>
+                                <Text style={[styles.title, { marginVertical: 20 }]}>{title}</Text>
                             )}
                         />
+
+                        <Button text='Add a task' onPress={goToNewTask}/>
 
                     </View>
                 </View>

@@ -2,10 +2,12 @@ import { StyleSheet } from "react-native";
 
 // * Colors *
 const white = '#FFF';
+const green = '#00c466';
 
 export const colors = {
     
     background: white,
+    green: green,
 };
 
 // * Styles *

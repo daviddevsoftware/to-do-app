@@ -1,11 +1,7 @@
 // Native libraries
-import React, { useEffect } from 'react';
+import React from 'react';
 import {
-    Platform,
-    StatusBar,
     StyleSheet,
-    Text,
-    useColorScheme,
 } from 'react-native';
 
 // Navigation
@@ -17,9 +13,8 @@ import HomeScreen from './src/screens/Home/index';
 import AddTaskScreen from './src/screens/AddTask';
 
 // Store
-import { Provider, useDispatch } from 'react-redux';
+import { Provider } from 'react-redux';
 import store from './src/store/index';
-import { addTask } from './src/store/tasks';
 
 // Stacks
 const PrincipalStack = createStackNavigator()
