@@ -36,7 +36,6 @@ const TasksSlice = createSlice({
             let { length: oldLength } = tasks;
             let newTask = action.payload;
             newTask.id = oldLength + 1;
-            console.log(tasks);
             tasks.push(newTask);
         },
 
@@ -56,8 +55,6 @@ const TasksSlice = createSlice({
                 state.tasks = state.tasks.filter((item) => !item.completed)
                 state.completedTasks.push(tempTask);
             }
-
-            console.log(index);
         },
 
         // Revert

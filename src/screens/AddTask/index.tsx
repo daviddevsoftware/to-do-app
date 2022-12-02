@@ -1,18 +1,42 @@
 // Native Libraries
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { Dimensions, SectionList, Text, TouchableNativeFeedback } from 'react-native';
 import { StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { CommonActions } from '@react-navigation/native';
 
 // Global Styles
 import { colors, generalStyles } from '../../utilities/styles';
 
 // Icons
 import Icon from 'react-native-vector-icons/FontAwesome';
-import { CommonActions } from '@react-navigation/native';
 
+// Components
+import Input from '../../components/Input';
+
+// Store
+import { TaskData } from '../../store/tasks';
+
+const DefaultTaksData: TaskData = {
+    title: '',
+    dead_line:  new Date(),
+    start_time: '',
+    end_time: '',
+    remind: '',
+    repeat: '',
+    completed: false
+}
 
 const AddTaskScreen = ({ navigation }: any) => { 
+
+    const [newTask, setNewTask] = useState<TaskData>(DefaultTaksData)
+
+    const handleNewTaskChange = (value: any, prop: keyof TaskData) => {
+        setNewTask({
+            ...newTask,
+            [prop]: value
+        })
+    }
 
     const goBack = () => {
         navigation.dispatch(CommonActions.goBack());
@@ -35,13 +59,17 @@ const AddTaskScreen = ({ navigation }: any) => {
                         </View>
                             
                         {/* Title */}
-                        <Text style={[ styles.title ]}>To-Do App</Text>
+                        <Text style={[ styles.title ]}>Add task</Text>
 
                     </View>
 
                     {/* Content */}
                     <View style={[ styles.content ]}>
-
+                        <Input 
+                            title={'Title'}
+                            placeHolder={'Describe your title...'}
+                            onChangeText={(text: string) => handleNewTaskChange(text, 'title')}
+                        />
                     </View>
                 </View>
             </SafeAreaView>
@@ -67,12 +95,14 @@ const styles = StyleSheet.create({
     },
     content: {
         flex: 6,
+        paddingVertical: 20,
+        paddingHorizontal: 10,
     },
 
     // Title
     title: {
         fontSize: 25,
-        fontWeight: '300',
+        fontWeight: '400',
         marginLeft: 20
     },
 

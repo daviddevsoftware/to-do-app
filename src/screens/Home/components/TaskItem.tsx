@@ -58,8 +58,10 @@ const TaskItem = ({ item, index }: ComponentProps) => {
         setToggleCheckBox(value)
     }
 
+    const animStyle = { opacity: Platform.OS === 'ios' ? opacity : 1 };
+
     return (
-        <Animated.View key={`${item.id}-${index}`} style={[styles.container, { opacity: Platform.OS === 'ios' ? opacity : 1 }]}>
+        <Animated.View key={`${item.id}-${index}`} style={[styles.container, animStyle]}>
             <CheckBox
                 value={toggleCheckBox}
                 onValueChange={(newValue) => {
