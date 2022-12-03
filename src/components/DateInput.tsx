@@ -1,15 +1,10 @@
 // Native libraries
-import React, { useEffect, useState, useRef, useMemo } from "react";
+import React, { useEffect, useState } from "react";
 import {
     View,
     StyleSheet,
-    TextInput,
     Text,
-    Animated,
     ViewStyle,
-    KeyboardTypeOptions,
-    Platform,
-    Easing,
     TouchableNativeFeedback
 } from "react-native";
 

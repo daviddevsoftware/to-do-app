@@ -1,7 +1,7 @@
 // Native Libraries
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Animated, Platform, Text } from 'react-native';
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 
 // Libraries
 import CheckBox from '@react-native-community/checkbox';

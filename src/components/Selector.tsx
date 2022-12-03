@@ -6,7 +6,7 @@
 */
 
 // Native libraries
-import React, { useEffect, useState, useRef, useMemo } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import {
     View, StyleSheet, Text, ViewStyle, TouchableNativeFeedback
 } from "react-native";
@@ -142,9 +142,8 @@ const styles = StyleSheet.create({
         justifyContent: 'center',
         alignItems: 'flex-start',
         width: '100%', 
-        height: 30,
+        height: 50,
         paddingHorizontal: 20,
-        paddingVertical: 5,
         marginBottom: 10,
     },
 
@@ -155,7 +154,7 @@ const styles = StyleSheet.create({
     },
 
     titleOptionItem: {
-        marginBottom: 10,
+        marginBottom: 20,
         fontSize: 20,
         fontWeight: '300',
         justifyContent: 'flex-end'

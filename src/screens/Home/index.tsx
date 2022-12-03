@@ -1,11 +1,11 @@
 // Native Libraries
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect } from 'react';
 import { SectionList, Text, TouchableNativeFeedback } from 'react-native';
 import { StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 // Global Styles
-import { colors, generalStyles } from '../../utilities/styles';
+import { generalStyles } from '../../utilities/styles';
 
 // Icons
 import Icon from 'react-native-vector-icons/FontAwesome';
@@ -15,7 +15,7 @@ import { CommonActions } from '@react-navigation/native';
 
 // Store
 import { useDispatch } from 'react-redux';
-import { addTask, clearTask, TaskData } from '../../store/tasks';
+import { addTask, TaskData } from '../../store/tasks';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/index';
 

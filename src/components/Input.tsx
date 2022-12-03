@@ -1,24 +1,14 @@
-/**
- * @author: Carlos Enrique Duarte Ortiz <carlosduarte.1@hotmail.com>
- */
-
-// React Native libraries
-import React, { useEffect, useState, useRef, useMemo } from "react";
+// Native libraries
+import React, { useEffect } from "react";
 import {
     View,
     StyleSheet,
     TextInput,
     Text,
-    Animated,
     ViewStyle,
-    KeyboardTypeOptions,
-    Platform,
-    Easing,
-    KeyboardAvoidingView,
-    Dimensions
-} from "react-native";
+    KeyboardTypeOptions} from "react-native";
 
-// Custom Styles
+// Styles
 import { colors } from "../utilities/styles";
 
 // External libraries (React Native)
@@ -36,21 +26,11 @@ type ScreenProps = {
     editable?: boolean,
 };
 
-/**
- * Input
- * @param title: Title of the input
- * @param placeHolder: Placeholder of the input
- * @param onChangeText: Function to handle the change of the input
- * @param value: Value of the input
- * @param editable: Boolean to handle if the input is editable or not
- * @param keyboardType: Type of the keyboard
- * @param style: Custom style of the input
- */
-const Input = ({ title, placeHolder, onChangeText, value, editable = true, keyboardType, style: overratedStyle }: ScreenProps) => {
-    var component: any = null;
+const Input = ({ title, placeHolder, onChangeText, value, editable, keyboardType, style: overratedStyle }: ScreenProps) => {
+    var component: TextInput | null = null;
 
-    // useEffect(() => {
-    // }, [])
+    useEffect(() => {
+    }, [])
 
     return (
         <KeyboardAwareScrollView
@@ -86,8 +66,6 @@ const Input = ({ title, placeHolder, onChangeText, value, editable = true, keybo
 
     );
 };
-
-// Export the component
 export default Input;
 
 const styles = StyleSheet.create({
@@ -123,18 +101,9 @@ const styles = StyleSheet.create({
     input: {
         fontSize: 15,
         height: '100%',
-        fontWeight: '600',
         paddingLeft: 20,
         color: "#000",
         width: '100%',
-    },
-
-    dateInput: {
-        height: 55,
-        width: '100%',
-        borderWidth: 1,
-        marginBottom: 0,
-        backgroundColor: 'transparent',
     },
 
     title: {
