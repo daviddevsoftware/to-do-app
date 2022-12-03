@@ -13,14 +13,16 @@ import {
     ViewStyle,
     KeyboardTypeOptions,
     Platform,
-    Easing
+    Easing,
+    KeyboardAvoidingView,
+    Dimensions
 } from "react-native";
 
 // Custom Styles
 import { colors } from "../utilities/styles";
 
 // External libraries (React Native)
-import DatePicker from 'react-native-date-picker'
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 // Interfaces
 type ScreenProps = {
@@ -51,29 +53,36 @@ const Input = ({ title, placeHolder, onChangeText, value, editable = true, keybo
     // }, [])
 
     return (
-        <View style={[styles.container]}>
-            {/* Title */}
-            <View style={[styles.containerTitle]}>
-                <Text style={styles.title}>{title}</Text>
-            </View>
+        <KeyboardAwareScrollView
+            extraScrollHeight={20}
+            style={[ styles.container] }
+            contentContainerStyle={{ flexGrow: 1 }}
+            showsVerticalScrollIndicator={false}>
+            <View style={[styles.container, { paddingHorizontal: 20 }]}>
+                {/* Title */}
+                <View style={[styles.containerTitle]}>
+                    <Text style={styles.title}>{title}</Text>
+                </View>
 
-            {/* Input */}
-            <View style={[styles.containerInput]}>
-                <TextInput
-                    ref={ref => {
-                        component = ref;
-                    }}
-                    style={[styles.input, overratedStyle]}
-                    value={value}
-                    placeholder={placeHolder}
-                    placeholderTextColor={colors.grayLabel}
-                    onChangeText={onChangeText}
-                    editable={editable}
-                    keyboardType={keyboardType}
-                    blurOnSubmit
-                />
+                {/* Input */}
+                <View style={[styles.containerInput]}>
+                    <TextInput
+                        ref={ref => {
+                            component = ref;
+                        }}
+                        style={[styles.input, overratedStyle]}
+                        value={value}
+                        placeholder={placeHolder}
+                        placeholderTextColor={colors.grayLabel}
+                        onChangeText={onChangeText}
+                        editable={editable}
+                        keyboardType={keyboardType}
+                        blurOnSubmit
+                    />
+                </View>
             </View>
-        </View>
+        </KeyboardAwareScrollView>
+        
 
     );
 };
@@ -85,7 +94,6 @@ const styles = StyleSheet.create({
 
     container: {
         flex: 1,
-        paddingHorizontal: 20,
         maxHeight: 105,
     },
 

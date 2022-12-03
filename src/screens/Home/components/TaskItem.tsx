@@ -1,5 +1,5 @@
 // Native Libraries
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Animated, Platform, Text } from 'react-native';
 import { StyleSheet, View } from 'react-native';
 
@@ -8,7 +8,8 @@ import CheckBox from '@react-native-community/checkbox';
 
 // Store
 import { completeTask, revertTask, TaskData } from '../../../store/tasks';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
+import { RootState } from '../../../store';
 
 // Interfaces
 interface ComponentProps {
@@ -19,24 +20,21 @@ interface ComponentProps {
 
 const TaskItem = ({ item, index }: ComponentProps) => { 
 
-    // Data
-    const data: any[] = [];
-
     // State
     const [toggleCheckBox, setToggleCheckBox] = useState(item.completed)
+    const { tasks } = useSelector((state: RootState) => state.TaskData);
     const dispatch = useDispatch();
 
     // Animated
-    const opacity = new Animated.Value(0);
+    const opacity = new Animated.Value(item.is_new ? 1: 0);
     useEffect(() => {
         // Opacity
-        setTimeout(() => {
-            Animated.timing(opacity, {
-                toValue: 1,
-                duration : 600,
-                useNativeDriver: true,
-            }).start();
-        }, 100)
+        if(!item.is_new) Animated.timing(opacity, {
+            toValue: 1,
+            duration : 600,
+            delay: 50,
+            useNativeDriver: true,
+        }).start();
     }, [])
 
     const handleSetToggle = () => {

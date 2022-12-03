@@ -1,5 +1,5 @@
 // Native Libraries
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import { SectionList, Text, TouchableNativeFeedback } from 'react-native';
 import { StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
@@ -54,7 +54,7 @@ const HomeScreen = ({ navigation }: any) => {
         // addLocalTast('Making Wireframes');
         // addLocalTast('Create UI Elements');
         // addLocalTast('Meeting with Murman Khvadadze');
- 
+
     }, [])
 
     const addLocalTast = (title: string) => {
@@ -130,6 +130,7 @@ const HomeScreen = ({ navigation }: any) => {
                             )}
                         />
 
+                        {/* Button */}
                         <Button text='Add a task' onPress={goToNewTask}/>
 
                     </View>

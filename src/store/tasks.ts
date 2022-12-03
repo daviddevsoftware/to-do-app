@@ -13,6 +13,7 @@ export interface TaskData {
     remind: string
     repeat: string
     completed: boolean
+    is_new: boolean
 }
 
 // Persist config
@@ -32,11 +33,12 @@ const TasksSlice = createSlice({
     reducers: {
         // Add 
         addTask(state, action) {
-            let { tasks } = state;
+            let { tasks, completedTasks } = state;
             let { length: oldLength } = tasks;
             let newTask = action.payload;
             newTask.id = oldLength + 1;
-            tasks.push(newTask);
+            newTask.is_new = true;
+            state.tasks.push(newTask)
         },
 
         // Clear All Task
@@ -52,6 +54,7 @@ const TasksSlice = createSlice({
             if(state.tasks.length > index){
                 let tempTask = state.tasks[index];
                 tempTask.completed = true;
+                tempTask.is_new = false;
                 state.tasks = state.tasks.filter((item) => !item.completed)
                 state.completedTasks.push(tempTask);
             }

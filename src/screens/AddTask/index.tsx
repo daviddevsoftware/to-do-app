@@ -28,7 +28,8 @@ const DefaultTaksData: TaskData = {
     end_time: '',
     remind: '',
     repeat: '',
-    completed: false
+    completed: false,
+    is_new: true,
 }
 
 const OptionReminders = [
