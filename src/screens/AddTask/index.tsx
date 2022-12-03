@@ -13,9 +13,13 @@ import Icon from 'react-native-vector-icons/FontAwesome';
 
 // Components
 import Input from '../../components/Input';
+import DateInput from '../../components/DateInput';
+import Selector from '../../components/Selector';
+import Button from '../../components/Button';
 
 // Store
-import { TaskData } from '../../store/tasks';
+import { addTask, TaskData } from '../../store/tasks';
+import { useDispatch } from 'react-redux';
 
 const DefaultTaksData: TaskData = {
     title: '',
@@ -27,9 +31,39 @@ const DefaultTaksData: TaskData = {
     completed: false
 }
 
+const OptionReminders = [
+    { value: '10-minutes', label: '10 minutes early' },
+    { value: '20-minutes', label: '20 minutes early' },
+    { value: '30-minutes', label: '30 minutes early' },
+    { value: '45-minutes', label: '45 minutes early' },
+    { value: '60-minutes', label: '60 minutes early' },
+    { value: '3-hours', label: '3 hours early' },
+    { value: '6-hours', label: '6 hours early' },
+    { value: '12-hours', label: '12 hours early' },
+    { value: '24-hours', label: '24 hours early' },
+];
+
+const OptionRepeats = [
+    { value: 'daily', label: 'Daily' },
+    { value: 'weekly', label: 'Weekly' },
+    { value: 'monthly', label: 'Monthly' },
+    { value: '3-months', label: 'Every 3 months' },
+    { value: '6-months', label: 'Every 6 months' },
+    { value: '9-months', label: 'Every 9 months' },
+    { value: '12-months', label: 'Every 12 months' },
+];
+
 const AddTaskScreen = ({ navigation }: any) => { 
 
+    // State
     const [newTask, setNewTask] = useState<TaskData>(DefaultTaksData)
+
+    const dispatch = useDispatch();
+
+    const handleAddNewTask = () => {
+        dispatch(addTask(newTask))
+        goBack();
+    }
 
     const handleNewTaskChange = (value: any, prop: keyof TaskData) => {
         setNewTask({
@@ -65,11 +99,67 @@ const AddTaskScreen = ({ navigation }: any) => {
 
                     {/* Content */}
                     <View style={[ styles.content ]}>
+
+                        {/* Title */}
                         <Input 
                             title={'Title'}
                             placeHolder={'Describe your title...'}
                             onChangeText={(text: string) => handleNewTaskChange(text, 'title')}
                         />
+
+                        {/* Deadline */}
+                        <DateInput 
+                            title={'Deadline'}
+                            placeHolder={'Select your date...'}
+                            onChangeText={(text: string) => handleNewTaskChange(text, 'dead_line')}
+                        />
+
+                        {/* Section */}
+                        <View style={{ flexDirection: 'row' }}>
+                            {/* Start time */}
+                            <DateInput 
+                                title={'Start time'}
+                                placeHolder={'00:00 Am'}
+                                mode={'time'}
+                                onChangeText={(text: string) => handleNewTaskChange(text, 'start_time')}
+                            />
+
+                            {/* End time */}
+                            <DateInput 
+                                title={'End time'}
+                                placeHolder={'00:00 Pm'}
+                                mode={'time'}
+                                onChangeText={(text: string) => handleNewTaskChange(text, 'end_time')}
+                            />
+                        </View>
+
+                        {/* Remind */}
+                        <Selector 
+                            title={'Remind'}
+                            titleModal={'Select a reminder option'}
+                            placeHolder={'Select reminder'}
+                            onChange={(value: any) => handleNewTaskChange(value, 'end_time')}
+                            options={OptionReminders}
+                            keyShowed={'label'}
+                            keyValue={'value'}
+                        />
+
+                        {/* Repeat */}
+                        <Selector 
+                            title={'Repeat'}
+                            titleModal={'Select a repeat option'}
+                            placeHolder={'Select repeat'}
+                            onChange={(value: any) => handleNewTaskChange(value, 'repeat')}
+                            options={OptionRepeats}
+                            keyShowed={'label'}
+                            keyValue={'value'}
+                        />
+
+                        <View style={{ marginTop: 40, paddingHorizontal: 20 }} >
+                            <Button text='Create a task' onPress={handleAddNewTask}/>
+                        </View>
+                        
+
                     </View>
                 </View>
             </SafeAreaView>
