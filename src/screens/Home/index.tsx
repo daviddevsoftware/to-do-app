@@ -15,7 +15,7 @@ import { CommonActions } from '@react-navigation/native';
 
 // Store
 import { useDispatch } from 'react-redux';
-import { addTask, TaskData } from '../../store/tasks';
+import { addTask, clearTask, selectAllCompletedTaskIds, selectAllPendingTaskIds, selectTasks, TaskData } from '../../store/tasks';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../store/index';
 
@@ -26,13 +26,15 @@ import Button from '../../components/Button';
 // Interfaces
 interface SectionTasks {
     title: string;
-    data: TaskData[];
+    data: number[];
 }
 
 const HomeScreen = ({ navigation }: any) => {
 
     // Task Data
-    const { tasks, completedTasks } = useSelector((state: RootState) => state.TaskData);
+    const tasks = useSelector((state: RootState) => state.TaskData.idsPending);
+    const completedTasks = useSelector((state: RootState) => state.TaskData.idsCompleted);
+
     const data: SectionTasks[] = [
         {
             title: 'Completed tasks',
@@ -123,8 +125,8 @@ const HomeScreen = ({ navigation }: any) => {
                         <SectionList
                             sections={data}
                             stickySectionHeadersEnabled={false}
-                            keyExtractor={(item, index) => `${item.id}-${index}`}
-                            renderItem={({ item, index }) => <TaskItem item={item} index={index}/>}
+                            keyExtractor={(id, index) => `${id}-${index}`}
+                            renderItem={({ item, index }) => <TaskItem id={item} index={index}/>}
                             renderSectionHeader={({ section: { title } }) => (
                                 <Text style={[styles.title, { marginVertical: 20 }]}>{title}</Text>
                             )}

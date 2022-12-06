@@ -26,6 +26,18 @@ type ScreenProps = {
     editable?: boolean,
 };
 
+
+/**
+ * Input
+ * @param placeHolder: Placeholder of the input
+ * @param title: Title of the input
+ * @param value: Value of the input
+ * @param onChangeText: Function to change the value of the input
+ * @param style: Style of the input
+ * @param keyboardType: Type of keyboard
+ * @param inputRef: Reference of the input
+ * @param editable: If the input is editable
+ */
 const Input = ({ title, placeHolder, onChangeText, value, editable, keyboardType, style: overratedStyle }: ScreenProps) => {
     var component: TextInput | null = null;
 

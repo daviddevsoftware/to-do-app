@@ -11,6 +11,11 @@ interface ComponentProps {
     onPress?: ((event: GestureResponderEvent) => void)
 }
 
+/**
+ * Button
+ * @param text: Text to show in the button
+ * @param onPress: Function to execute when the button is pressed
+ */
 const Button = ({ text, onPress }: ComponentProps) => {
     return (
         <View style={[styles.container]}>

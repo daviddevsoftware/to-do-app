@@ -7,66 +7,67 @@ import { StyleSheet } from 'react-native';
 import CheckBox from '@react-native-community/checkbox';
 
 // Store
-import { completeTask, revertTask, TaskData } from '../../../store/tasks';
+import { completeTask, revertTask, selectTaskById, TaskData } from '../../../store/tasks';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '../../../store';
 
 // Interfaces
 interface ComponentProps {
-    item: TaskData,
+    id: number,
     index: number,
     isCompleted?: boolean,
 }
 
-const TaskItem = ({ item, index }: ComponentProps) => { 
+const TaskItem = ({ id,  index }: ComponentProps) => { 
+
+    if(id == -1) return null;
+
+    // Store
+    const item = useSelector((state: RootState) => selectTaskById(state.TaskData, id))
+    const dispatch = useDispatch();
+
+    if(!item) return null;
 
     // State
     const [toggleCheckBox, setToggleCheckBox] = useState(item.completed)
-    const { tasks } = useSelector((state: RootState) => state.TaskData);
-    const dispatch = useDispatch();
 
     // Animated
-    const opacity = new Animated.Value(item.is_new ? 1: 0);
+    const opacity = new Animated.Value(0);
     useEffect(() => {
-        // Opacity
-        if(!item.is_new) Animated.timing(opacity, {
-            toValue: 1,
+        if(toggleCheckBox == item.completed) handleOpacityAnimation(1);
+    }, [toggleCheckBox]);
+
+    const handleOpacityAnimation = (newValue: number) => {
+        // Turn off Opacity
+        Animated.timing(opacity, {
+            toValue: newValue,
             duration : 600,
             delay: 50,
             useNativeDriver: true,
         }).start();
-    }, [])
-
-    const handleSetToggle = () => {
-        // Complete Task
-        if(toggleCheckBox) dispatch(completeTask({ index }))
-
-        // Revert Task
-        if(!toggleCheckBox) dispatch(revertTask({ index }))
     }
 
-    const handleSetAndroid = (value: boolean) => {
-        // Complete Task
-        if(value) dispatch(completeTask({ index }))
-
-        // Revert Task
-        if(!value) dispatch(revertTask({ index }))
+    // Listeners    
+    const handleChange = (value: boolean) => {
+        setToggleCheckBox(value)
 
         // Set
-        setToggleCheckBox(value)
+        setTimeout(() => {
+            // Complete Task
+            if(value) dispatch(completeTask({ id }))
+
+            // Revert Task
+            if(!value) dispatch(revertTask({ id }))
+        }, 600)
     }
 
-    const animStyle = { opacity: Platform.OS === 'ios' ? opacity : 1 };
+    const animStyle = { opacity: opacity };
 
     return (
         <Animated.View key={`${item.id}-${index}`} style={[styles.container, animStyle]}>
             <CheckBox
                 value={toggleCheckBox}
-                onValueChange={(newValue) => {
-                    if(Platform.OS === 'android') handleSetAndroid(newValue)
-                    if(Platform.OS === 'ios') setToggleCheckBox(newValue)
-                }}
-                onAnimationDidStop={() => handleSetToggle()}
+                onValueChange={handleChange}
                 style={[styles.checkbox]}
             />
             <Text style={[styles.label]}>{item.title}</Text>

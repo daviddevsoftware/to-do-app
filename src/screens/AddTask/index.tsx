@@ -22,6 +22,7 @@ import { addTask, TaskData } from '../../store/tasks';
 import { useDispatch } from 'react-redux';
 
 const DefaultTaksData: TaskData = {
+    id: -1,
     title: '',
     dead_line:  new Date(),
     start_time: '',
